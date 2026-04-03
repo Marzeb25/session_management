@@ -10,6 +10,10 @@ gem "importmap-rails"
 gem "turbo-rails"
 gem "stimulus-rails"
 gem "jbuilder"
+gem "devise"
+gem "devise-two-factor"
+gem "redis"
+gem "redis-session-store"
 
 group :development, :test do
   gem "debug"
