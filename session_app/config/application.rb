@@ -11,6 +11,14 @@ module SessionApp
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 8.1
 
+    # Configure Redis session store
+    config.session_store :redis_session_store,
+      key: "_session_app_session",
+      expire_after: 90.minutes,
+      redis: {
+        url: ENV.fetch("REDIS_URL") { "redis://localhost:6379/0" }
+      }
+
     # Please, add to the `ignore` list any other `lib` subdirectories that do
     # not contain `.rb` files, or that should not be reloaded or eager loaded.
     # Common ones are `templates`, `generators`, or `middleware`, for example.

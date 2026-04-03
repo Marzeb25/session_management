@@ -34,3 +34,6 @@ This project uses Docker to containerize the Rails application and PostgreSQL da
   - `db`: PostgreSQL 15 database with persistent data storage.
 - Volume mounts allow for hot reloading of code changes during development.
 - The app connects to the database using environment variables defined in the compose file.
+
+### To get inside the redis
+- `docker compose exec redis redis-cli`

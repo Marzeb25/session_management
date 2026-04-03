@@ -1,0 +1,50 @@
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8 text-center">
+      <% if user_signed_in? %>
+        <h1 class="display-5 mb-4">Welcome Back, <%= current_user.email %></h1>
+        <p class="lead mb-5">Your secure session is active and managed by Redis</p>
+        
+        <div class="d-flex gap-3 justify-content-center">
+          <%= link_to "Edit Profile", edit_user_registration_path, class: "btn btn-primary btn-lg" %>
+          <%= link_to "Sign Out", destroy_user_session_path, data: { turbo_method: :delete }, class: "btn btn-outline-danger btn-lg" %>
+        </div>
+
+        <div class="card mt-5">
+          <div class="card-body">
+            <h5 class="card-title">Session Information</h5>
+            <p class="card-text"><strong>Email:</strong> <%= current_user.email %></p>
+            <p class="card-text"><strong>Member Since:</strong> <%= current_user.created_at.strftime("%B %d, %Y") %></p>
+            <p class="card-text"><strong>Two-Factor Authentication:</strong> <%= current_user.otp_required_for_login ? "Enabled ✓" : "Disabled" %></p>
+          </div>
+        </div>
+      <% else %>
+        <h1 class="display-4 mb-4">Welcome to Session Manager</h1>
+        <p class="lead mb-5">Manage your sessions securely with two-factor authentication</p>
+        
+        <div class="d-flex gap-3 justify-content-center">
+          <%= link_to "Sign Up", new_user_registration_path, class: "btn btn-primary btn-lg" %>
+          <%= link_to "Sign In", new_user_session_path, class: "btn btn-outline-primary btn-lg" %>
+        </div>
+      <% end %>
+
+      <div class="mt-5 pt-5">
+        <h4 class="mb-4">Features</h4>
+        <div class="row">
+          <div class="col-md-4">
+            <h5>Secure Login</h5>
+            <p>Email and password authentication with encrypted sessions</p>
+          </div>
+          <div class="col-md-4">
+            <h5>Two-Factor Auth</h5>
+            <p>Optional OTP-based two-factor authentication for extra security</p>
+          </div>
+          <div class="col-md-4">
+            <h5>Redis Sessions</h5>
+            <p>Fast and reliable session management with Redis</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

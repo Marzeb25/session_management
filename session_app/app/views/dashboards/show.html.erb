@@ -1,0 +1,31 @@
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1>Dashboard</h1>
+        <%= link_to "Sign Out", destroy_user_session_path, data: { turbo_method: :delete }, class: "btn btn-danger" %>
+      </div>
+
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Welcome, <%= @user.email %></h5>
+          <p class="card-text">You are logged in securely with Redis session management.</p>
+          
+          <div class="mt-4">
+            <h6>Account Information:</h6>
+            <ul class="list-group">
+              <li class="list-group-item"><strong>Email:</strong> <%= @user.email %></li>
+              <li class="list-group-item"><strong>Account Created:</strong> <%= @user.created_at.strftime("%B %d, %Y") %></li>
+              <li class="list-group-item"><strong>Two-Factor Auth:</strong> <%= @user.otp_required_for_login ? "Enabled" : "Disabled" %></li>
+            </ul>
+          </div>
+
+          <div class="mt-4">
+            <%= link_to "Edit Profile", edit_user_registration_path, class: "btn btn-primary" %>
+            <%= link_to "Enable 2FA", "#", class: "btn btn-secondary" if !@user.otp_required_for_login %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
